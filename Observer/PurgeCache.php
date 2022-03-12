@@ -77,6 +77,7 @@ class PurgeCache implements ObserverInterface
     {
         return $this->configProvider->isEnabledPurgeCache() &&
             $this->configProvider->getAuthKey() &&
+            $this->configProvider->getZoneIds() &&
             $this->configProvider->getEmail();
     }
 }
