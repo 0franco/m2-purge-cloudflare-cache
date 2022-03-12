@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_cache_flush_system">
+        <observer name="flush_system_pagecache_cloudflare" instance="OH\Cloudflare\Observer\PurgeCache" />
+    </event>
+    <event name="adminhtml_cache_flush_all">
+        <observer name="magento_all_pagecache_cloudflare" instance="OH\Cloudflare\Observer\PurgeCache" />
+    </event>
+    <event name="clean_media_cache_after">
+        <observer name="flush_all_pagecache_cloudflare" instance="OH\Cloudflare\Observer\PurgeCache" />
+    </event>
+</config>

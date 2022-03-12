@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+
+    <system>
+        <section id="oh_cloudflare" translate="label" sortOrder="65"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Cloudflare</label>
+            <tab>oh_core</tab>
+            <resource>OH_Cloudflare::settings</resource>
+            <group id="settings" translate="label"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Settings</label>
+                <field id="enable_purge_cache" translate="label comment" type="select"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable purge cache</label>
+                    <comment>Purge all caches from Cloudflare after purge Magento Cache from command line or admin
+                        panel
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email" translate="label" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Auth Email</label>
+                    <depends>
+                        <field id="enable_purge_cache">1</field>
+                    </depends>
+                </field>
+                <field id="auth_key" translate="label" type="obscure" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Auth key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="enable_purge_cache">1</field>
+                    </depends>
+                </field>
+                <field id="zones" translate="label" type="multiselect" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Zones</label>
+                    <source_model>OH\Cloudflare\Model\Source\Zones</source_model>
+                    <comment>Zones to purge</comment>
+                    <depends>
+                        <field id="enable_purge_cache">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
